@@ -42,10 +42,9 @@ def search(country, categories):
                 page_html = requests.get(results_object.html_url, headers = {'Accept-Encoding': 'identity'})
                 page_text = BeautifulSoup(page_html.text, "html.parser").get_text()
 
-                # Interpret the results and add it to the 
+                # Interpret the results with OpenAI's AI and add it to the results
                 conclusion = openai_api.interpret(page_text)
                 results[category] = conclusion
-                
             else:
                 results[category] = "Unable to determine"
         return results
